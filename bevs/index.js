@@ -21,7 +21,7 @@ function start() {
 
     // Main Logo
     displayImage({
-        displayElement: document.getElementById("logo"),
+        displayElement: document.getElementById("bevs"),
         displayImage: createSVG({
             primaryText: "Visual Symbol",
             textStyle: 2,

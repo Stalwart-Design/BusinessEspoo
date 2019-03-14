@@ -154,24 +154,24 @@ function textSVG({
             let textWidth = width - height * 2.7;
             return '<svg height="' + height + '"  width="' + textWidth + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
                 '<style>' +
-                '    .logo-type-primary {' +
+                '    .bevs-type-primary {' +
                 '        font: bold ' + size * 0.75 + 'px Metropolis;' +
                 '        fill: ' + color + ';' +
                 '    }' +
                 '</style>' +
-                '    <text  x="' + size * 0.3 + '" y="' + size * 0.98 + '" class="logo-type-primary" >' + primaryText.toUpperCase() + '</text>' +
+                '    <text  x="' + size * 0.3 + '" y="' + size * 0.98 + '" class="bevs-type-primary" >' + primaryText.toUpperCase() + '</text>' +
                 '</svg>';
 
         case 2:
             console.log("textSVG");
             return '<svg height="' + height + '"  width="' + width + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
                 '<style>' +
-                '    .logo-type-primary {' +
+                '    .bevs-type-primary {' +
                 '        font: 500 ' + size * 0.5 + 'px Metropolis;' +
                 '        fill: ' + color + ';' +
                 '    }' +
                 '</style>' +
-                '    <text x="'+ -0.02 * size +'" y="' + size * 0.5 + '" class="logo-type-primary" >' + primaryText + '</text>' +
+                '    <text x="'+ -0.02 * size +'" y="' + size * 0.5 + '" class="bevs-type-primary" >' + primaryText + '</text>' +
                 '</svg>';
     }
 }
