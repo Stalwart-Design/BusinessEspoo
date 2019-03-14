@@ -1,21 +1,9 @@
 <html lang="en">
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135498233-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-        gtag('config', 'UA-135498233-1');
-    </script>
-
-
-    <title>FA Logo Generator</title>
+    <title>Business Espoo Visual Symbol</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -34,7 +22,7 @@
     <meta property="og:image:height" content="279">
     <meta property="og:title" content="FA Logo Generator">
     <meta property="og:description" content="Generate any and all FA logos.">
-    <meta property="og:url" content="https://fasiddhant.bitbucket.io/logo/">
+    <meta property="og:url" content="https://businessespoo.ml/logo/">
 
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/metropolis" type="text/css"/>
     <link href="style.css" rel="stylesheet">
@@ -51,82 +39,96 @@
     <form>
         <div id="customise">
 
-            <h3>Input values to create logo.</h3>
+            <h3>Input values to create symbol.</h3>
 
-            <div >
+            <div class="form_2">
                 <div>
-                    <label for="logo-text-1">Primary Text</label>
-                    <input id="logo-text-1" name="primary" placeholder="e.g. Meetup" autocomplete="off">
-                    <span class="help-text">Leave empty to create BE-Logo instead of Lockup.</span>
+                    <label for="color_symbol">Symbol Colour</label>
+                    <select name="color_symbol" id="color_symbol" >
+                        <option value="#0114B3">🔵 BE Blue</option>
+                        <option value="#E6E8F2">⚪ BE Grey-10</option>
+                        <option value="#000000">⚫ Black</option>
+                        <option value="#ffffff">⚪ White</option>
+                    </select>
+                    <span class="help-text">Select Accent Colour</span>
                 </div>
-                <!--<div>-->
-                    <!--<label for="logo-text-2">Secondary Text</label>-->
-                    <!--<input id="logo-text-2" name="secondary" placeholder="e.g. Lite" autocomplete="off">-->
-                    <!--<span class="help-text">[Can't appear without Primary text]</span>-->
-                <!--</div>-->
-                <div>
-                    <label for="logo-size">Icon Size</label>
-                    <input id="logo-size" type="range" placeholder="Eg. 1000px" value="200" autocomplete="off"
-                           name="size" min="100" max="1000" step="100">
+                <div class="form_1">
+                    <label for="symbol_size">Icon Size</label>
+                    <input id="symbol_size" type="number" placeholder="Eg. 1000px" value="200" autocomplete="off"
+                           name="size" min="100" max="1000" step="100" list="size_steplist">
                     <span class="help-text">In pixels (100, 200, 300, ..., 1000)</span>
+                    <datalist id="size_steplist">
+                        <option>100</option>
+                        <option>200</option>
+                        <option>300</option>
+                        <option>400</option>
+                        <option>500</option>
+                        <option>600</option>
+                        <option>700</option>
+                        <option>800</option>
+                        <option>900</option>
+                        <option>1000</option>
+                    </datalist>
                 </div>
             </div>
-            <br>
-            <div class="form_group">
+            <div class="form_2">
+                <div class="form_1">
+                    <label for="text_lockup">Lockup Text</label>
+                    <input id="text_lockup" name="text_lockup" placeholder="e.g. Meetup" autocomplete="off">
+                    <span class="help-text">Add text to create Lockups</span>
+                </div>
                 <div>
-                    <label for="logo-color">Logo Colour</label>
-                    <input type="color" id="logo-color" placeholder="#6C2621" autocomplete="off" name="color">
-                    <span class="help-text">Select Accent Colour or enter HEX Code; FA Color: #6C2621</span>
+                    <label for="color_lockup">Text Colour</label>
+                    <input type="text" id="color_lockup" placeholder="eg: #0114B3" autocomplete="off" name="color_lockup">
+                    <span class="help-text">[Optional] Colour Hex code</span>
                 </div>
+            </div>
 
-            </div>
-            <div>
-                <p>Select style</p>
-                <div style="display: grid; grid-template-rows:25px; grid-template-columns: repeat(4, 30px 35px); align-items: center">
-                    <input type="radio" id="styleChoice0"
-                           name="style" value="0">
-                    <label for="styleChoice0">All</label>
-                    <input type="radio" id="styleChoice1"
-                           name="style" value="1">
-                    <label for="styleChoice1">1</label>
-                    <input type="radio" id="styleChoice2"
-                           name="style" value="2">
-                    <label for="styleChoice2">2</label>
-                    <input type="radio" id="styleChoice3"
-                           name="style" value="3">
-                    <label for="styleChoice3">3</label>
-                </div>
-            </div>
+            <!--<div>-->
+                <!--<p>Select style</p>-->
+                <!--<div style="display: grid; grid-template-rows:25px; grid-template-columns: repeat(4, 30px 35px); align-items: center">-->
+                    <!--<input type="radio" id="styleChoice0"-->
+                           <!--name="style" value="0">-->
+                    <!--<label for="styleChoice0">All</label>-->
+                    <!--<input type="radio" id="styleChoice1"-->
+                           <!--name="style" value="1">-->
+                    <!--<label for="styleChoice1">1</label>-->
+                    <!--<input type="radio" id="styleChoice2"-->
+                           <!--name="style" value="2">-->
+                    <!--<label for="styleChoice2">2</label>-->
+                    <!--<input type="radio" id="styleChoice3"-->
+                           <!--name="style" value="3">-->
+                    <!--<label for="styleChoice3">3</label>-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
         <div id="foot_button">
-            <button class="button_primary" type="submit">Generate Logos</button>
+            <button class="button_primary" type="submit"><h3>Generate Symbol</h3></button>
         </div>
     </form>
 </aside>
 
 <main>
-    <button class="button_secondary" type="button" id="share">Copy Share Link</button>
+
     <h3>Click on Image to download a PNG file.</h3>
-    <p class="help-text">Transparent background (no margins or borders). The first logo contains a transparent icon and second logo
+    <p class="help-text">Transparent background (no margins or borders). The first logo contains a transparent icon and
+        second logo
         contains an opaque icon. (Size: HxW)</p>
 
     <div id="render_area">
         <div>
             <hr>
-            <b>Style 1</b>&nbsp;&nbsp; <span id="dimensions-1"></span>
-            <div id="logos-1">Not supported with the selection.</div>
+            <b>BE Icon</b>&nbsp;&nbsp; <span id="dimensions-icon"></span>
+            <div id="icon_area">Not supported with the selection.</div>
         </div>
         <div>
             <hr>
-            <b>Style 2</b>&nbsp;&nbsp; <span id="dimensions-2"></span>
-            <div id="logos-2">Not supported with the selection.</div>
-        </div>
-        <div>
-            <hr>
-            <b>Style 3</b>&nbsp;&nbsp; <span id="dimensions-3"></span>
-            <div id="logos-3">Not supported with the selection.</div>
+            <b>BEVS</b>&nbsp;&nbsp; <span id="dimensions-symbol"></span>
+            <div id="symbol_area">Not supported with the selection.</div>
         </div>
     </div>
+
+    <button class="button_secondary" type="button" id="share">Copy Share Link</button>
 </main>
 
 <footer>
@@ -134,8 +136,8 @@
     <div>
         <p class="help-text">For issues, contact: </p>
         <b>Siddhant Gupta</b> <br>
-        UX Designer, FA Solutions Oy <br>
-        <a href="mailto:siddhant@fasolutions.com">siddhant@fasolutions.com</a>
+        Designer <br>
+        <a href="mailto:me@guptasiddhant.com">me@guptasiddhant.com</a>
     </div>
 </footer>
 

@@ -3,8 +3,8 @@ $(document).ready(start);
 function start() {
 
     // Define and read parameters
-    let primary_text, secondary_text, color, size, style;
-    [primary_text, secondary_text, color, size, style] = readParams();
+    let text_lockup, color_symbol, color_lockup, size, style;
+    [text_lockup, color_symbol, color_lockup, size, style] = readParams();
 
     // Copy Share Link
     $('#share').click(function (e) {
@@ -22,183 +22,125 @@ function start() {
     // Main Logo
     displayImage({
         displayElement: document.getElementById("logo"),
-        displayImage: createSVG({primaryText: "Logo", secondaryText: "GENERATOR"}),
-        displayWidth: 240,
-        displayBackgroundColor: "#0114B3",
+        displayImage: createSVG({
+            primaryText: "Visual Symbol",
+            textStyle: 2,
+            iconStyle: 1,
+            color1: "#E6E8F2"
+        }),
+        displayHeight: 80,
+        displayBackgroundColor: "transparent",
         displayLink: "index.html"
     });
 
-    render_set(primary_text, secondary_text, color, size, style);
+    render_set(text_lockup, color_symbol, color_lockup, size, style);
 }
 
 // Read values from URL and clean them
 function readParams() {
     let params = new URLSearchParams(document.location.search.substring(1));
-    let primary_text = params.get("primary");
-    let secondary_text = params.get("secondary");
-    let color = params.get("color");
+    let text_lockup = params.get("text_lockup");
+    // let secondary_text = params.get("secondary");
+    let color_symbol = params.get("color_symbol");
+    let color_lockup = params.get("color_lockup");
     let size = params.get("size");
-    let style = params.get("style");
+    // let style = params.get("style");
     let json_return = params.get("json");
     // Check if JSON requested
     if (json_return && json_return === "true") {
         let response = `
-        {   "primary": "${primary_text}",
-            "secondary": "${secondary_text}"
+        {   "primary": "${text_lockup}",
         }`;
         response = JSON.parse(response);
         $("html").html(response);
         console.log(response);
     } else {
         // Clean and Validate data
-        color = color ? color : "#6C2621";
-        primary_text = primary_text ? primary_text.toLowerCase() === "solutions" ? "SOLUTIONS" : primary_text : "";
-        secondary_text = secondary_text ? secondary_text.toUpperCase() : "";
+        color_symbol = color_symbol ? color_symbol : "#0114B3";
+        color_lockup = color_lockup ? color_lockup : "";
+        text_lockup = text_lockup ? text_lockup : "";
         size = size ? size : 200;
-        style = style ? style : 0;
+        let style = 0;
         // Fill form with data
-        $('#logo-text-1').val(primary_text);
-        $('#logo-text-2').val(secondary_text);
-        $('#logo-color').val(color);
-        $('#logo-size').val(size);
-        $('input:radio[name="style"]').filter('[value=' + style + ']').prop('checked', true);
+        $('#text_lockup').val(text_lockup);
+        $('#color_symbol').val(color_symbol);
+        $('#color_lockup').val(color_lockup);
+        $('#symbol_size').val(size);
+        // $('input:radio[name="style"]').filter('[value=' + style + ']').prop('checked', true);
         // Return all values
-        return [primary_text, secondary_text, color, size, style];
+        return [text_lockup, color_symbol, color_lockup, size, style];
     }
 }
 
 // Render all logos
-function render_set(Text1 = '', Text2 = '', Color = '#6C2621', Size = 500, style = 0) {
+function render_set(TextLockup = '', ColorSymbol = '#0114B3', ColorText = '#0114B3', Size = 500, style = 0) {
 
     // console.log([Text1, Text2, Color, Size, style]);
-    let Color2 = invertColor(Color);
+    let ColorBG = invertColor(ColorSymbol);
 
-    if (Text1 === '') {
-        // Icons
+    const element_icon = document.getElementById("icon_area");
+    element_icon.innerHTML = '';
+    const element_symbol = document.getElementById("symbol_area");
+    element_symbol.innerHTML = '';
 
-        const element = document.getElementById("logos-1");
-        element.innerHTML = '';
+    displayImage({
+        displayElement: element_icon,
+        displayImage: createSVG({
+            size: Size,
+            color1: ColorSymbol,
+            iconStyle: 2,
+            textStyle: 1
+        }),
+        displayBackgroundColor: ColorBG
+    });
+
+    //Lockups
+    let height, width;
+    [height, width] = canvasSize({
+        textStyle: 1,
+        size: Size,
+        primaryText: TextLockup.toUpperCase()
+    });
+
+    if (width/height < 8) {
 
         displayImage({
-            displayElement: element,
-            displayImage: createSVG({size: Size, color1: Color, color2: Color2}),
-            displayBackgroundColor: Color2
-        });
-        displayImage({
-            displayElement: element,
-            displayImage: createSVG({size: Size, color1: Color, color2: Color2, opacity: 0}),
-            displayBackgroundColor: Color2
-        });
-
-
-    } else {
-        //Logos
-
-        if (style == 0 || style == 1) {
-
-            let height, width;
-            [height, width] = canvasSize({
-                textStyle: 1,
+            displayElement: element_symbol,
+            displayImage: createSVG({
                 size: Size,
-                primaryText: Text1,
-                secondaryText: Text2
-            });
-            const element = document.getElementById("logos-1");
-            element.innerHTML = '';
-
-            if (width / height > 7) {
-                element.innerText = "Too wide to look good. The width should be less than " + height*7 + " px.";
-            } else {
-                displayImage({
-                    displayElement: element,
-                    displayImage: createSVG({
-                        size: Size,
-                        primaryText: Text1,
-                        secondaryText: Text2,
-                        color1: Color,
-                        color2: Color2,
-                        textStyle: 1
-                    }),
-                    displayBackgroundColor: Color2
-                });
-
-                displayImage({
-                    displayElement: element,
-                    displayImage: createSVG({
-                        size: Size,
-                        primaryText: Text1,
-                        secondaryText: Text2,
-                        color1: Color2,
-                        color2: Color,
-                        textStyle: 1,
-                        iconStyle: 2
-                    }),
-                    displayBackgroundColor: Color
-                });
-            }
-        }
-        if (Text1 !== '' && Text2 !== '') {
-            if (style == 0 || style == 2) {
-                const element = document.getElementById("logos-2");
-                element.innerHTML = '';
-                displayImage({
-                    displayElement: element,
-                    displayImage: createSVG({
-                        size: Size,
-                        primaryText: Text1,
-                        secondaryText: Text2,
-                        color1: Color,
-                        color2: Color2,
-                        textStyle: 2
-                    }),
-                    displayBackgroundColor: Color2
-                });
-
-                displayImage({
-                    displayElement: element,
-                    displayImage: createSVG({
-                        size: Size,
-                        primaryText: Text1,
-                        secondaryText: Text2,
-                        color1: Color2,
-                        color2: Color,
-                        textStyle: 2,
-                        iconStyle: 2
-                    }),
-                    displayBackgroundColor: Color
-                });
-            }
-        }
-        if (style == 0 || style == 3) {
-            const element = document.getElementById("logos-3");
-            element.innerHTML = '';
-            displayImage({
-                displayElement: element,
-                displayImage: createSVG({
-                    size: Size,
-                    primaryText: Text1,
-                    secondaryText: Text2,
-                    color1: Color,
-                    color2: Color2,
-                    textStyle: 3
-                }),
-                displayBackgroundColor: Color2
-            });
-
-            displayImage({
-                displayElement: element,
-                displayImage: createSVG({
-                    size: Size,
-                    primaryText: Text1,
-                    secondaryText: Text2,
-                    color1: Color2,
-                    color2: Color,
-                    textStyle: 3,
-                    iconStyle: 2
-                }),
-                displayBackgroundColor: Color
-            });
-        }
+                primaryText: TextLockup,
+                color1: ColorSymbol,
+                color2: ColorText,
+                textStyle: 2,
+                iconStyle: 1,
+            }),
+            displayBackgroundColor: ColorBG
+        });
+        displayImage({
+            displayElement: element_symbol,
+            displayImage: createSVG({
+                size: Size,
+                primaryText: TextLockup,
+                color1: ColorSymbol,
+                color2: ColorText,
+                textStyle: 1,
+                iconStyle: 1,
+            }),
+            displayBackgroundColor: ColorBG
+        });
+    } else {
+        displayImage({
+            displayElement: element_symbol,
+            displayImage: createSVG({
+                size: Size,
+                primaryText: TextLockup,
+                color1: ColorSymbol,
+                color2: ColorText,
+                textStyle: 2,
+                iconStyle: 1,
+            }),
+            displayBackgroundColor: ColorBG
+        });
     }
 
 }
