@@ -1,1 +1,144 @@
-//LOGO Generator
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135498233-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-135498233-1');
+    </script>
+
+
+    <title>FA Logo Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#6c2621">
+    <link rel="shortcut icon" href="favicon/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="FA Logo">
+    <meta name="application-name" content="FA Logo">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-config" content="favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta property="og:image" content="favicon/og-image.jpg">
+    <meta property="og:image:width" content="279">
+    <meta property="og:image:height" content="279">
+    <meta property="og:title" content="FA Logo Generator">
+    <meta property="og:description" content="Generate any and all FA logos.">
+    <meta property="og:url" content="https://fasiddhant.bitbucket.io/logo/">
+
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/metropolis" type="text/css"/>
+    <link href="style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+    <script src="be_logo.js"></script>
+</head>
+<body>
+<aside id="sidebar">
+    <div id="header_logo">
+        <a href="index.html" target="_self" id="logo"></a>
+    </div>
+    <form>
+        <div id="customise">
+
+            <h3>Input values to create logo.</h3>
+
+            <div >
+                <div>
+                    <label for="logo-text-1">Primary Text</label>
+                    <input id="logo-text-1" name="primary" placeholder="e.g. Meetup" autocomplete="off">
+                    <span class="help-text">Leave empty to create BE-Logo instead of Lockup.</span>
+                </div>
+                <!--<div>-->
+                    <!--<label for="logo-text-2">Secondary Text</label>-->
+                    <!--<input id="logo-text-2" name="secondary" placeholder="e.g. Lite" autocomplete="off">-->
+                    <!--<span class="help-text">[Can't appear without Primary text]</span>-->
+                <!--</div>-->
+                <div>
+                    <label for="logo-size">Icon Size</label>
+                    <input id="logo-size" type="range" placeholder="Eg. 1000px" value="200" autocomplete="off"
+                           name="size" min="100" max="1000" step="100">
+                    <span class="help-text">In pixels (100, 200, 300, ..., 1000)</span>
+                </div>
+            </div>
+            <br>
+            <div class="form_group">
+                <div>
+                    <label for="logo-color">Logo Colour</label>
+                    <input type="color" id="logo-color" placeholder="#6C2621" autocomplete="off" name="color">
+                    <span class="help-text">Select Accent Colour or enter HEX Code; FA Color: #6C2621</span>
+                </div>
+
+            </div>
+            <div>
+                <p>Select style</p>
+                <div style="display: grid; grid-template-rows:25px; grid-template-columns: repeat(4, 30px 35px); align-items: center">
+                    <input type="radio" id="styleChoice0"
+                           name="style" value="0">
+                    <label for="styleChoice0">All</label>
+                    <input type="radio" id="styleChoice1"
+                           name="style" value="1">
+                    <label for="styleChoice1">1</label>
+                    <input type="radio" id="styleChoice2"
+                           name="style" value="2">
+                    <label for="styleChoice2">2</label>
+                    <input type="radio" id="styleChoice3"
+                           name="style" value="3">
+                    <label for="styleChoice3">3</label>
+                </div>
+            </div>
+        </div>
+        <div id="foot_button">
+            <button class="button_primary" type="submit">Generate Logos</button>
+        </div>
+    </form>
+</aside>
+
+<main>
+    <button class="button_secondary" type="button" id="share">Copy Share Link</button>
+    <h3>Click on Image to download a PNG file.</h3>
+    <p class="help-text">Transparent background (no margins or borders). The first logo contains a transparent icon and second logo
+        contains an opaque icon. (Size: HxW)</p>
+
+    <div id="render_area">
+        <div>
+            <hr>
+            <b>Style 1</b>&nbsp;&nbsp; <span id="dimensions-1"></span>
+            <div id="logos-1">Not supported with the selection.</div>
+        </div>
+        <div>
+            <hr>
+            <b>Style 2</b>&nbsp;&nbsp; <span id="dimensions-2"></span>
+            <div id="logos-2">Not supported with the selection.</div>
+        </div>
+        <div>
+            <hr>
+            <b>Style 3</b>&nbsp;&nbsp; <span id="dimensions-3"></span>
+            <div id="logos-3">Not supported with the selection.</div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <br><br>
+    <div>
+        <p class="help-text">For issues, contact: </p>
+        <b>Siddhant Gupta</b> <br>
+        UX Designer, FA Solutions Oy <br>
+        <a href="mailto:siddhant@fasolutions.com">siddhant@fasolutions.com</a>
+    </div>
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+body {
+    font-family: "Metropolis", sans-serif;
+    font-size: 14px;
+    margin: 40px;
+    background-color: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%);
+    /*border: #99332f solid 1px;*/
+    /*padding: 20px;*/
+}
+
+input, button {
+    height: 35px;
+    width: 100%;
+    margin-top: 0;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: none;
+    font-size: 14px;
+    border: 1px solid #0114B3;
+    font-weight: 500;
+}
+
+main {
+    margin-left: 350px;
+}
+
+#sidebar {
+    z-index: 100;
+    position: fixed;
+    top: 40px;
+    left: 40px;
+    bottom: 40px;
+    max-width: 300px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.5);
+    overflow-y: hidden;
+}
+
+#header_logo {
+    background: #0114B3;
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    color: #efefef;
+    height: 70px;
+}
+
+#customise {
+    padding: 20px;
+    overflow-y: scroll;
+    height: calc(100% - 200px);
+}
+
+form {
+    margin-bottom: 0 !important;
+}
+
+#foot_button {
+    width: 100%;
+    height: 50px;
+    background: #0114B3;
+    border-radius: 0 0 20px 20px;
+    color: #efefef;
+}
+
+.form_group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    margin-bottom: 10px;
+}
+
+#render_area > div {
+    margin-bottom: 20px;
+}
+
+button {
+    cursor: pointer;
+}
+
+.button_primary {
+    background-color: transparent;
+    border-radius: 0 0 20px 20px;
+    height: 50px;
+    margin-top: 0;
+    color: #ffffff;
+}
+
+.button_primary:hover {
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.button_secondary {
+    background-color: transparent;
+    border: 1px solid #0114B3;
+    color: #0114B3;
+    width: 200px;
+}
+
+.help-text {
+    font-size: 0.8rem;
+    color: grey;
+}
+
+footer {
+    z-index: 1;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+}
