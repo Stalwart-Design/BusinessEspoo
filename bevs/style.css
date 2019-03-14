@@ -3,6 +3,7 @@ body {
     font-size: 14px;
     margin: 40px;
     background-color: #E6E8F2;
+    line-height: 1.5;
     /*border: #99332f solid 1px;*/
     /*padding: 20px;*/
 }
@@ -104,13 +105,14 @@ button {
     width: 200px;
 }
 
-.label {
+label {
     font-weight: 600;
+
 }
 
 .help-text {
-    font-size: 0.8rem;
-    color: grey;
+    font-size: 0.9rem;
+    color: #111111;
 }
 
 footer {

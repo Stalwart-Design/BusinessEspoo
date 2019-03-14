@@ -34,7 +34,7 @@
 <body>
 <aside id="sidebar">
     <div id="header_logo">
-        <a href="index.html" target="_self" id="logo"></a>
+        <a href="index.html" target="_self" id="bevs"></a>
     </div>
     <form>
         <div id="customise">
@@ -54,9 +54,9 @@
                 </div>
                 <div class="form_1">
                     <label for="symbol_size">Icon Size</label>
-                    <input id="symbol_size" type="number" placeholder="Eg. 1000px" value="200" autocomplete="off"
+                    <input id="symbol_size" type="number" placeholder="Eg. 1000px" value="300" autocomplete="off"
                            name="size" min="100" max="1000" step="100" list="size_steplist">
-                    <span class="help-text">In pixels (100, 200, 300, ..., 1000)</span>
+                    <span class="help-text">Px [100, 200, 300, ..., 1000]</span>
                     <datalist id="size_steplist">
                         <option>100</option>
                         <option>200</option>
@@ -111,9 +111,7 @@
 <main>
 
     <h3>Click on Image to download a PNG file.</h3>
-    <p class="help-text">Transparent background (no margins or borders). The first logo contains a transparent icon and
-        second logo
-        contains an opaque icon. (Size: HxW)</p>
+    <p class="help-text">Transparent background (no margins or borders). (Size: HxW)</p>
 
     <div id="render_area">
         <div>
@@ -135,8 +133,7 @@
     <br><br>
     <div>
         <p class="help-text">For issues, contact: </p>
-        <b>Siddhant Gupta</b> <br>
-        Designer <br>
+        <strong>Siddhant Gupta</strong>, Designer <br>
         <a href="mailto:me@guptasiddhant.com">me@guptasiddhant.com</a>
     </div>
 </footer>

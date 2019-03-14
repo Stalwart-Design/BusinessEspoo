@@ -102,20 +102,21 @@ function render_set(TextLockup = '', ColorSymbol = '#0114B3', ColorText = '#0114
         primaryText: TextLockup.toUpperCase()
     });
 
-    if (width/height < 8) {
-
-        displayImage({
-            displayElement: element_symbol,
-            displayImage: createSVG({
-                size: Size,
-                primaryText: TextLockup,
-                color1: ColorSymbol,
-                color2: ColorText,
-                textStyle: 2,
-                iconStyle: 1,
-            }),
-            displayBackgroundColor: ColorBG
-        });
+    if (width / height < 8) {
+        if (TextLockup !== '') {
+            displayImage({
+                displayElement: element_symbol,
+                displayImage: createSVG({
+                    size: Size,
+                    primaryText: TextLockup,
+                    color1: ColorSymbol,
+                    color2: ColorText,
+                    textStyle: 2,
+                    iconStyle: 1,
+                }),
+                displayBackgroundColor: ColorBG
+            });
+        }
         displayImage({
             displayElement: element_symbol,
             displayImage: createSVG({

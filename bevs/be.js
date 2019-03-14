@@ -68,7 +68,7 @@ function displayImage({
     if (displayLink !== "") {
         linkImg.href = displayLink;
     } else {
-        linkImg.download = 'FA Logo';
+        linkImg.download = 'BEVS';
     }
     displayElement.appendChild(linkImg);
 
@@ -97,7 +97,6 @@ function canvasSize({
 
     switch (textStyle) {
         case 1:
-            console.log("reach");
             scaledWidth += getTextWidth(primaryText, "bold 225px Metropolis");
             scaledHeight = 300;
             if (primaryText === '') {
@@ -109,7 +108,6 @@ function canvasSize({
             break;
 
         case 2:
-            console.log("textStyle");
             scaledWidth = getTextWidth(primaryText, "bold 150px Metropolis");
             if (scaledWidth < 800) {
                 scaledWidth = 800;
@@ -163,7 +161,6 @@ function textSVG({
                 '</svg>';
 
         case 2:
-            console.log("textSVG");
             return '<svg height="' + height + '"  width="' + width + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
                 '<style>' +
                 '    .bevs-type-primary {' +
@@ -191,7 +188,7 @@ function iconSVG({
     </g>
 </svg>`;
 
-    let be_svg_icon = `<svg width="${size}" height="${size}" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    let be_svg_icon = `<svg width="${size}" height="${size}" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <g id="Visual-Symbol-Proposed" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="BE_Icon_Light" fill="${color1}">
             <path d="M0,0 L200,0 L200,200 L0,200 L0,0 Z M25,145 L75.3056769,145 C93.6462882,145 106.746725,135.174672 106.746725,120.764192 C106.746725,110.80786 101.662994,101.454148 91.1826446,97 C99.0429067,93.2008734 102.554585,86.441048 102.554585,77.6637555 C102.554585,64.5633188 90.6331878,55 73.4716157,55 L25,55 L25,145 Z M52,89.9781659 L52,76.3537118 L69.0305677,76.3537118 C74.2707424,76.3537118 78.069869,79.2358079 78.069869,83.1659389 C78.069869,87.0960699 74.2707424,89.9781659 69.0305677,89.9781659 L52,89.9781659 Z M52,123.646288 L52,109.235808 L72.8296943,109.235808 C78.3318777,109.235808 82.2620087,112.248908 82.2620087,116.441048 C82.2620087,120.633188 78.3318777,123.646288 72.8296943,123.646288 L52,123.646288 Z M175,77.6637555 L175,55 C155.098981,55 140.098981,55 130,55 C119.901019,55 108.647867,55 96.2405432,55 C105.413514,60.3333333 110,67.8879185 110,77.6637555 C110,87.4395924 107.329871,93.8850073 101.989612,97 C110.663204,102.098453 115,110.039733 115,120.82384 C115,131.607947 109.834401,139.666667 99.5032018,145 L130,145 L175,145 L175,122.336245 L130,122.336245 L130,110.414847 L171.253275,110.414847 L171.253275,87.7510917 L130,87.7510917 L130,77.6637555 L175,77.6637555 Z" id="BE-Icon"></path>
@@ -228,19 +225,19 @@ function invertColor(hex, bw = true) {
     if (hex.length !== 6) {
         throw new Error('Invalid HEX color.');
     }
-    var r = parseInt(hex.slice(0, 2), 16),
+    let r = parseInt(hex.slice(0, 2), 16),
         g = parseInt(hex.slice(2, 4), 16),
         b = parseInt(hex.slice(4, 6), 16);
     if (bw) {
         // http://stackoverflow.com/a/3943023/112731
         return (r * 0.299 + g * 0.587 + b * 0.114) > 186
-            ? '#000000'
+            ? '#0114B3'
             : '#FFFFFF';
     }
-    // invert color components
-    r = (255 - r).toString(16);
-    g = (255 - g).toString(16);
-    b = (255 - b).toString(16);
-    // pad each with zeros and return
-    return "#" + padZero(r) + padZero(g) + padZero(b);
+    // // invert color components
+    // r = (255 - r).toString(16);
+    // g = (255 - g).toString(16);
+    // b = (255 - b).toString(16);
+    // // pad each with zeros and return
+    // return "#" + padZero(r) + padZero(g) + padZero(b);
 }
