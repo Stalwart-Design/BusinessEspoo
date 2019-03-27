@@ -153,7 +153,7 @@ function textSVG({
             return '<svg height="' + height + '"  width="' + textWidth + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
                 '<style>' +
                 '    .bevs-type-primary {' +
-                '        font: bold ' + size * 0.75 + 'px Metropolis;' +
+                '        font: 500 ' + size * 0.75 + 'px Metropolis;' +
                 '        fill: ' + color + ';' +
                 '    }' +
                 '</style>' +
