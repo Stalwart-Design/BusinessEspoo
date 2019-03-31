@@ -3,46 +3,57 @@ function createSVG({
                        color1 = "#ffffff",
                        color2 = "",
                        primaryText = "",
+                       secondaryText = "",
                        textStyle = 1,
                        iconStyle = 1
                    }) {
 
-    let height, width, svg_text = "";
+    let height, width, svg_text_1 = "", svg_text_2 = "";
 
     if (color2 === "") {
         color2 = color1;
     }
-    if (textStyle === 1) {
+
+    if (primaryText === "") {
         [height, width] = canvasSize({
-            textStyle: textStyle,
             size: size,
-            primaryText: primaryText.toUpperCase()
         });
     } else {
         [height, width] = canvasSize({
             textStyle: textStyle,
             size: size,
-            primaryText: primaryText
+            primaryText: primaryText,
+            secondaryText: secondaryText
         });
     }
-
 
     if (iconStyle === 2) {
         width = height;
     } else {
-        svg_text = textSVG({
-            textStyle: textStyle,
+        svg_text_1 = textSVG({
+            textStyle: 1,
             height: height,
             width: width,
             size: size,
             color: color2,
             primaryText: primaryText
         });
+        if (secondaryText !== '') {
+            svg_text_1 = textSVG({
+                textStyle: 2,
+                height: height,
+                width: width,
+                size: size,
+                color: color2,
+                primaryText: primaryText,
+                secondaryText: secondaryText
+            });
+        }
     }
     let svg_icon = iconSVG({size: size, color1: color1, iconStyle: iconStyle});
 
     let svg_string = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}"><foreignObject width="100%" height="100%"><div xmlns="http://www.w3.org/1999/xhtml">`
-        + svg_icon + svg_text + `</div></foreignObject></svg>`;
+        + svg_icon + svg_text_1 + `</div></foreignObject></svg>`;
     return {svg: svg_string, height: height, width: width};
 }
 
@@ -73,7 +84,7 @@ function displayImage({
     displayElement.appendChild(linkImg);
 
     const targetImg = document.createElement('img');
-    targetImg.style = "max-height: " + displayHeight + "; max-width: " + displayWidth + "; padding: 10px; margin: 5px 10px 0 0; border-radius: 5px; background-color:" + displayBackgroundColor + ";";
+    targetImg.style = "max-height: " + displayHeight + "; max-width: " + displayWidth + "; padding: 15px; margin: 5px 10px 0 0; border-radius: 5px; background-color:" + displayBackgroundColor + ";";
     linkImg.appendChild(targetImg);
 
     function onTempImageLoad(e) {
@@ -90,29 +101,34 @@ function canvasSize({
                         textStyle = 0,
                         size = 300,
                         primaryText = "",
+                        secondaryText = "",
                     }) {
     let scale = size / 300;
     let scaledWidth = 890;
     let scaledHeight = 300;
 
     switch (textStyle) {
-        case 1:
-            scaledWidth += getTextWidth(primaryText, "bold 225px Metropolis");
-            scaledHeight = 300;
-            if (primaryText === '') {
-                scaledWidth = 800;
-            }
-            if (scaledWidth < 900) {
-                scaledWidth = 800;
-            }
-            break;
+        // case 2:
+        //     scaledWidth += getTextWidth(primaryText, "bold 225px Metropolis");
+        //     scaledHeight = 300;
+        //     if (primaryText === '') {
+        //         scaledWidth = 800;
+        //     }
+        //     if (scaledWidth < 900) {
+        //         scaledWidth = 800;
+        //     }
+        //     break;
 
-        case 2:
-            scaledWidth = getTextWidth(primaryText, "bold 150px Metropolis");
+        case 1:
+            scaledWidth = Math.max(getTextWidth(primaryText, "bold 120px Metropolis,Arial"), getTextWidth(secondaryText, "bold 120px Metropolis,Arial"));
             if (scaledWidth < 800) {
                 scaledWidth = 800;
             }
-            scaledHeight = 500;
+            if (secondaryText === "") {
+                scaledHeight = 450;
+            } else {
+                scaledHeight = 600;
+            }
             break;
 
         default:
@@ -145,32 +161,61 @@ function textSVG({
                      width = 100,
                      size = 100,
                      color = "#ffffff",
-                     primaryText = ""
+                     primaryText = "",
+                     secondaryText = ""
                  }) {
+    let svgText = "";
     switch (textStyle) {
+//         case 1:
+//             let textWidth = width - height * 2.7;
+//             return '<svg height="' + height + '"  width="' + textWidth + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
+//                 ` <defs>
+//     <style type="text/css">
+//     @font-face {
+//                 font-family: "MetropolisMedium";
+//                 src: url("data:application/font-woff;charset=utf-8;base64,${base64Encode(getBinary('font/MetropolisMedium.woff'))}") format("woff");
+//             }
+//             </style>
+// </defs>` +
+//                 '<style>' +
+//                 '    .bevs-type-primary {' +
+//                 '        font: 500 ' + size * 0.75 + 'px MetropolisMedium;' +
+//                 '        fill: ' + color + ';' +
+//                 '    }' +
+//                 '</style>' +
+//                 '    <text  x="' + size * 0.3 + '" y="' + size * 0.98 + '" class="bevs-type-primary" >' + primaryText.toUpperCase() + '</text>' +
+//                 '</svg>';
+
         case 1:
-            let textWidth = width - height * 2.7;
-            return '<svg height="' + height + '"  width="' + textWidth + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
-                '<style>' +
-                '    .bevs-type-primary {' +
-                '        font: 500 ' + size * 0.75 + 'px Metropolis;' +
-                '        fill: ' + color + ';' +
-                '    }' +
-                '</style>' +
-                '    <text  x="' + size * 0.3 + '" y="' + size * 0.98 + '" class="bevs-type-primary" >' + primaryText.toUpperCase() + '</text>' +
-                '</svg>';
+            svgText = `<svg height="${height}" width="${width}" version="1.1" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+            <style>
+            @font-face {
+                font-family: "MetropolisMedium";
+                src: url("data:application/font-woff;charset=utf-8;base64,${base64Encode(getBinary('font/MetropolisMedium.woff'))}") format("woff");
+            }
+            </style>
+                    <text x="${-0.01 * size}" y="${0.4 * size}" 
+                    font-family="MetropolisMedium, Arial" font-size="${size * 0.4}px" fill="${color}">
+                        ${primaryText}</text>
+                    </svg>`;
+            break;
 
         case 2:
-            return '<svg height="' + height + '"  width="' + width + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
-                '<style>' +
-                '    .bevs-type-primary {' +
-                '        font: 500 ' + size * 0.5 + 'px Metropolis;' +
-                '        fill: ' + color + ';' +
-                '    }' +
-                '</style>' +
-                '    <text x="'+ -0.02 * size +'" y="' + size * 0.5 + '" class="bevs-type-primary" >' + primaryText + '</text>' +
-                '</svg>';
+            svgText = `<svg height="${height}" width="${width}" version="1.1" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+            <style>
+            @font-face {
+                font-family: "MetropolisMedium";
+                src: url("data:application/font-woff;charset=utf-8;base64,${base64Encode(getBinary('font/MetropolisMedium.woff'))}") format("woff");
+            }
+            </style>
+                    <text x="${-0.01 * size}" y="${size*-0.05}" font-family="MetropolisMedium, Arial" font-size="${size * 0.4}px" fill="${color}">
+                    <tspan x="0" dy="1.2em">${primaryText}</tspan>
+                    <tspan x="0" dy="1.2em">${secondaryText}</tspan>
+                        </text>
+                    </svg>`;
+            break;
     }
+    return svgText;
 }
 
 // Return icon SVG
@@ -240,4 +285,44 @@ function invertColor(hex, bw = true) {
     // b = (255 - b).toString(16);
     // // pad each with zeros and return
     // return "#" + padZero(r) + padZero(g) + padZero(b);
+}
+
+
+// Get binary file using XMLHttpRequest
+function getBinary(file) {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", file, false);
+    xhr.overrideMimeType("text/plain; charset=x-user-defined");
+    xhr.send(null);
+    return xhr.responseText;
+}
+
+// Base64 encode binary string
+// Stolen from http://stackoverflow.com/questions/7370943/retrieving-binary-file-content-using-javascript-base64-encode-it-and-reverse-de
+function base64Encode(str) {
+    let CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    let out = "", i = 0, len = str.length, c1, c2, c3;
+    while (i < len) {
+        c1 = str.charCodeAt(i++) & 0xff;
+        if (i == len) {
+            out += CHARS.charAt(c1 >> 2);
+            out += CHARS.charAt((c1 & 0x3) << 4);
+            out += "==";
+            break;
+        }
+        c2 = str.charCodeAt(i++);
+        if (i == len) {
+            out += CHARS.charAt(c1 >> 2);
+            out += CHARS.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));
+            out += CHARS.charAt((c2 & 0xF) << 2);
+            out += "=";
+            break;
+        }
+        c3 = str.charCodeAt(i++);
+        out += CHARS.charAt(c1 >> 2);
+        out += CHARS.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));
+        out += CHARS.charAt(((c2 & 0xF) << 2) | ((c3 & 0xC0) >> 6));
+        out += CHARS.charAt(c3 & 0x3F);
+    }
+    return out;
 }

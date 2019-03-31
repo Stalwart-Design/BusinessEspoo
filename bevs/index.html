@@ -5,31 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
-    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#0114b3">
-    <link rel="shortcut icon" href="favicon/favicon.ico">
-    <meta name="apple-mobile-web-app-title" content="BEVS">
-    <meta name="application-name" content="BEVS">
-    <meta name="msapplication-TileColor" content="#0114b3">
-    <meta name="msapplication-config" content="favicon/browserconfig.xml">
-    <meta name="theme-color" content="#0114b3">
+    <!--<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">-->
+    <!--<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">-->
+    <!--<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">-->
+    <!--<link rel="manifest" href="favicon/site.webmanifest">-->
+    <!--<link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#0114b3">-->
+    <!--<link rel="shortcut icon" href="favicon/favicon.ico">-->
+    <!--<meta name="apple-mobile-web-app-title" content="BEVS">-->
+    <!--<meta name="application-name" content="BEVS">-->
+    <!--<meta name="msapplication-TileColor" content="#0114b3">-->
+    <!--<meta name="msapplication-config" content="favicon/browserconfig.xml">-->
+    <!--<meta name="theme-color" content="#0114b3">-->
 
-    <meta property="og:image:width" content="1039">
-    <meta property="og:image:height" content="544">
-    <meta property="og:title" content="BEVS">
-    <meta property="og:description" content="Generate Business Espoo Visual Symbols">
-    <meta property="og:image" content="favicon/og-image.jpg">
-    <meta property="og:url" content="https://businessespoo.ml/bevs/">
+    <!--<meta property="og:image:width" content="1039">-->
+    <!--<meta property="og:image:height" content="544">-->
+    <!--<meta property="og:title" content="BEVS">-->
+    <!--<meta property="og:description" content="Generate Business Espoo Visual Symbols">-->
+    <!--<meta property="og:image" content="favicon/og-image.jpg">-->
+    <!--<meta property="og:url" content="https://businessespoo.ml/bevs/">-->
 
-    <link rel="stylesheet" media="screen" href="font/metropolis.css" type="text/css"/>
     <link href="style.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="index.js"></script>
-    <script src="be.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/be.js"></script>
+    <script src="js/md5.js"></script>
 </head>
 <body>
 <aside id="sidebar">
@@ -44,7 +43,7 @@
             <div class="form_2">
                 <div>
                     <label for="color_symbol">Symbol Colour</label>
-                    <select name="color_symbol" id="color_symbol" >
+                    <select name="color_symbol" id="color_symbol">
                         <option value="#0114B3">🔵 BE Blue</option>
                         <option value="#E6E8F2">⚪ BE Grey-10</option>
                         <option value="#000000">⚫ Black</option>
@@ -55,8 +54,8 @@
                 <div class="form_1">
                     <label for="symbol_size">Icon Size</label>
                     <input id="symbol_size" type="number" placeholder="Eg. 1000px" value="300" autocomplete="off"
-                           name="size" min="100" max="1000" step="100" list="size_steplist">
-                    <span class="help-text">Px [100, 200, 300, ..., 1000]</span>
+                           name="size" min="50" max="1000" step="50" list="size_steplist">
+                    <span class="help-text">Pixels [50 ... 1000]</span>
                     <datalist id="size_steplist">
                         <option>100</option>
                         <option>200</option>
@@ -79,64 +78,76 @@
                 </div>
                 <div>
                     <label for="color_lockup">Text Colour</label>
-                    <input type="text" id="color_lockup" placeholder="eg: #0114B3" autocomplete="off" name="color_lockup">
-                    <span class="help-text">[Optional] Colour Hex code</span>
+                    <input type="text" id="color_lockup" placeholder="#0114B3" autocomplete="off"
+                           name="color_lockup">
+                    <span class="help-text">[Optional] Colour Hex</span>
+                </div>
+            </div>
+            <div class="form_2">
+                <div class="form_1">
+                    <label for="secret">Secret Key</label>
+                    <input type="text" id="secret" name="secret" placeholder="" autocomplete="off">
+                    <span class="help-text">Enter key to generate symbols & icons.</span>
+                </div>
+                <div>
+                    <label for="format">Format</label>
+                    <select name="format" id="format">
+                        <option value="png">.PNG</option>
+                        <option value="jpg">.PDF</option>
+                        <option value="jpg">.JPG</option>
+                        <option value="svg">.SVG</option>
+                    </select>
+                    <span class="help-text">Image format (extension)</span>
                 </div>
             </div>
 
-            <!--<div>-->
-                <!--<p>Select style</p>-->
-                <!--<div style="display: grid; grid-template-rows:25px; grid-template-columns: repeat(4, 30px 35px); align-items: center">-->
-                    <!--<input type="radio" id="styleChoice0"-->
-                           <!--name="style" value="0">-->
-                    <!--<label for="styleChoice0">All</label>-->
-                    <!--<input type="radio" id="styleChoice1"-->
-                           <!--name="style" value="1">-->
-                    <!--<label for="styleChoice1">1</label>-->
-                    <!--<input type="radio" id="styleChoice2"-->
-                           <!--name="style" value="2">-->
-                    <!--<label for="styleChoice2">2</label>-->
-                    <!--<input type="radio" id="styleChoice3"-->
-                           <!--name="style" value="3">-->
-                    <!--<label for="styleChoice3">3</label>-->
-                <!--</div>-->
-            <!--</div>-->
+            <button class="button_primary" type="submit"><h3>Generate Symbol</h3></button>
+            <p class="help-text">Known issues:
+            <ul>
+                <li>'&' character will be replaces with 'and' word.</li>
+                <li>'<' character is not supported.</li>
+            </ul>
+            </p>
         </div>
         <div id="foot_button">
-            <button class="button_primary" type="submit"><h3>Generate Symbol</h3></button>
+            Made by Siddhant Gupta -
+            <a href="mailto:me@guptasiddhant.com">Email</a>
+            <br>
+            © 2019 Business Espoo | License
         </div>
     </form>
 </aside>
 
-<main>
+<main id="main">
 
-    <h3>Click on Image to download a PNG file.</h3>
-    <p class="help-text">Transparent background (no margins or borders). (Size: HxW)</p>
+    <strong>Click on Image to download a PNG file.</strong><br>
+    <span class="help-text">Transparent background (no margins or borders). (Size: HxW)</span>
 
     <div id="render_area">
-        <div>
-            <hr>
-            <b>BE Icon</b>&nbsp;&nbsp; <span id="dimensions-icon"></span>
-            <div id="icon_area">Not supported with the selection.</div>
-        </div>
+
         <div>
             <hr>
             <b>BEVS</b>&nbsp;&nbsp; <span id="dimensions-symbol"></span>
             <div id="symbol_area">Not supported with the selection.</div>
+        </div>
+        <div>
+            <hr>
+            <b>BE Icon</b>&nbsp;&nbsp; <span id="dimensions-icon"></span>
+            <div id="icon_area">Not supported with the selection.</div>
         </div>
     </div>
 
     <button class="button_secondary" type="button" id="share">Copy Share Link</button>
 </main>
 
-<footer>
-    <br><br>
-    <div>
-        <p class="help-text">For issues, contact: </p>
-        <strong>Siddhant Gupta</strong>, Designer <br>
-        <a href="mailto:me@guptasiddhant.com">me@guptasiddhant.com</a>
-    </div>
-</footer>
+<!--<footer>-->
+<!--<br><br>-->
+<!--<div>-->
+<!--<p class="help-text">For issues, contact: </p>-->
+<!--<strong>Siddhant Gupta</strong>, Designer <br>-->
+<!--<a href="mailto:me@guptasiddhant.com">me@guptasiddhant.com</a>-->
+<!--</div>-->
+<!--</footer>-->
 
 
 </body>
