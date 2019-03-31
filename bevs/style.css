@@ -56,15 +56,16 @@ main {
 #header_logo {
     background: #0114B3;
     /*border-radius: 20px 20px 0 0;*/
-    padding: 20px;
+    padding: 10px;
+    padding-bottom: 30px;
     color: #efefef;
     height: 100px;
 }
 
 #customise {
-    padding: 20px;
+    padding: 0 20px;
     overflow-y: auto;
-    height: calc(100% - 220px);
+    height: calc(100% - 180px);
 }
 
 form {
@@ -106,7 +107,7 @@ button {
 .button_primary {
     background-color: #0114B3;
     /*border-radius: 0 0 20px 20px;*/
-    height: 60px;
+    height: 100px;
     margin-top: 0;
     color: #ffffff;
 }
