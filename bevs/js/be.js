@@ -113,17 +113,6 @@ function canvasSize({
     let scaledHeight = 300;
 
     switch (textStyle) {
-        // case 2:
-        //     scaledWidth += getTextWidth(primaryText, "bold 225px Metropolis");
-        //     scaledHeight = 300;
-        //     if (primaryText === '') {
-        //         scaledWidth = 800;
-        //     }
-        //     if (scaledWidth < 900) {
-        //         scaledWidth = 800;
-        //     }
-        //     break;
-
         case 1:
             scaledWidth = Math.max(getTextWidth(primaryText, "bold 120px Metropolis,Arial"), getTextWidth(secondaryText, "bold 120px Metropolis,Arial"));
             if (scaledWidth < 800) {
@@ -173,26 +162,6 @@ function textSVG({
                  }) {
     let svgText = "";
     switch (textStyle) {
-//         case 1:
-//             let textWidth = width - height * 2.7;
-//             return '<svg height="' + height + '"  width="' + textWidth + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
-//                 ` <defs>
-//     <style type="text/css">
-//     @font-face {
-//                 font-family: "MetropolisMedium";
-//                 src: url("data:application/font-woff;charset=utf-8;base64,${base64Encode(getBinary('font/MetropolisMedium.woff'))}") format("woff");
-//             }
-//             </style>
-// </defs>` +
-//                 '<style>' +
-//                 '    .bevs-type-primary {' +
-//                 '        font: 500 ' + size * 0.75 + 'px MetropolisMedium;' +
-//                 '        fill: ' + color + ';' +
-//                 '    }' +
-//                 '</style>' +
-//                 '    <text  x="' + size * 0.3 + '" y="' + size * 0.98 + '" class="bevs-type-primary" >' + primaryText.toUpperCase() + '</text>' +
-//                 '</svg>';
-
         case 1:
             svgText = `<svg height="${height}" width="${width}" version="1.1" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
             <style>
@@ -286,22 +255,15 @@ function invertColor(hex, bw = true) {
             ? '#0114B3'
             : '#FFFFFF';
     }
-    // // invert color components
-    // r = (255 - r).toString(16);
-    // g = (255 - g).toString(16);
-    // b = (255 - b).toString(16);
-    // // pad each with zeros and return
-    // return "#" + padZero(r) + padZero(g) + padZero(b);
-}
-
 
 // Get binary file using XMLHttpRequest
-function getBinary(file) {
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", file, false);
-    xhr.overrideMimeType("text/plain; charset=x-user-defined");
-    xhr.send(null);
-    return xhr.responseText;
+    function getBinary(file) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", file, false);
+        xhr.overrideMimeType("text/plain; charset=x-user-defined");
+        xhr.send(null);
+        return xhr.responseText;
+    }
 }
 
 // Base64 encode binary string

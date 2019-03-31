@@ -71,12 +71,8 @@ function readParams() {
         size = size ? size : 300;
         let style = 0;
 
-
         let passwordmd5 = "d1c24ffa194aa206286df139cbdf181b";
-        // console.log(md5(secret));
         let password = md5(secret) === passwordmd5;
-        // console.log(password);
-
 
         //replace unsupported characters
         text_lockup = text_lockup.replace(/&/g, 'and');
@@ -88,7 +84,6 @@ function readParams() {
         $('#color_lockup').val(color_lockup);
         $('#symbol_size').val(size);
         $('#secret').val(secret);
-        // $('input:radio[name="style"]').filter('[value=' + style + ']').prop('checked', true);
         // Return all values
         return [text_lockup, color_symbol, color_lockup, size, style, password];
     }
@@ -97,7 +92,6 @@ function readParams() {
 // Render all logos
 function render_set(TextLockup = '', ColorSymbol = '#0114B3', ColorText = '#0114B3', Size = 300) {
 
-    // console.log([Text1, Text2, Color, Size, style]);
     let ColorBG = invertColor(ColorSymbol);
 
     const element_icon = document.getElementById("icon_area");

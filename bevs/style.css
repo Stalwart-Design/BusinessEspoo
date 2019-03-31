@@ -19,8 +19,6 @@ body {
     margin: 40px;
     background-color: #E6E8F2;
     line-height: 1.5;
-    /*border: #99332f solid 1px;*/
-    /*padding: 20px;*/
 }
 
 input, button, select {
@@ -49,15 +47,13 @@ main {
     height: 100vh;
     max-width: 300px;
     background: #ffffff;
-    /*box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.5);*/
     overflow-y: hidden;
 }
 
 #header_logo {
     background: #0114B3;
-    /*border-radius: 20px 20px 0 0;*/
     padding: 10px;
-    padding-bottom: 30px;
+    padding-bottom: 30px !important;
     color: #efefef;
     height: 100px;
 }
@@ -78,7 +74,6 @@ form {
     text-align: center;
     padding: 5px 10px;
     background: #efefef;
-    /*border-radius: 0 0 20px 20px;*/
     position: absolute;
     justify-content: center;
     bottom: 0;
@@ -106,8 +101,7 @@ button {
 
 .button_primary {
     background-color: #0114B3;
-    /*border-radius: 0 0 20px 20px;*/
-    height: 100px;
+    height: 100px !important;
     margin-top: 0;
     color: #ffffff;
 }
