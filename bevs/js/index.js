@@ -27,7 +27,7 @@ function start() {
             primaryText: "Visual Symbol",
             textStyle: 1,
             iconStyle: 1,
-            color1: "#E6E8F2"
+            color1: "#E6E8F2",
         }),
         displayHeight: 80,
         displayBackgroundColor: "transparent",
@@ -95,7 +95,7 @@ function readParams() {
 }
 
 // Render all logos
-function render_set(TextLockup = '', ColorSymbol = '#0114B3', ColorText = '#0114B3', Size = 300, style = 0) {
+function render_set(TextLockup = '', ColorSymbol = '#0114B3', ColorText = '#0114B3', Size = 300) {
 
     // console.log([Text1, Text2, Color, Size, style]);
     let ColorBG = invertColor(ColorSymbol);
@@ -128,6 +128,7 @@ function render_set(TextLockup = '', ColorSymbol = '#0114B3', ColorText = '#0114
                 color2: ColorText,
                 textStyle: 1,
                 iconStyle: 1,
+                displaySize: true
             }),
             displayBackgroundColor: ColorBG
         });
@@ -149,6 +150,7 @@ function render_set(TextLockup = '', ColorSymbol = '#0114B3', ColorText = '#0114
                     color2: ColorText,
                     textStyle: 1,
                     iconStyle: 1,
+                    displaySize: true
                 }),
                 displayBackgroundColor: ColorBG
             });
@@ -165,19 +167,9 @@ function render_set(TextLockup = '', ColorSymbol = '#0114B3', ColorText = '#0114
                 color2: ColorText,
                 textStyle: 1,
                 iconStyle: 1,
+                displaySize: true
             }),
             displayBackgroundColor: ColorBG
         });
     }
 }
-
-function hashcode (string) {
-    var hash = 0, i, chr;
-    if (this.length === 0) return hash;
-    for (i = 0; i < this.length; i++) {
-        chr   = this.charCodeAt(i);
-        hash  = ((hash << 5) - hash) + chr;
-        hash |= 0; // Convert to 32bit integer
-    }
-    return hash;
-};

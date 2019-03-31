@@ -5,10 +5,11 @@ function createSVG({
                        primaryText = "",
                        secondaryText = "",
                        textStyle = 1,
-                       iconStyle = 1
+                       iconStyle = 1,
+                       displaySize = false,
                    }) {
 
-    let height, width, svg_text_1 = "", svg_text_2 = "";
+    let height, width, svg_text_1 = "";
 
     if (color2 === "") {
         color2 = color1;
@@ -17,13 +18,16 @@ function createSVG({
     if (primaryText === "") {
         [height, width] = canvasSize({
             size: size,
+            displaySize: displaySize,
         });
     } else {
         [height, width] = canvasSize({
             textStyle: textStyle,
             size: size,
             primaryText: primaryText,
-            secondaryText: secondaryText
+            secondaryText: secondaryText,
+            displaySize: displaySize,
+
         });
     }
 
@@ -102,6 +106,7 @@ function canvasSize({
                         size = 300,
                         primaryText = "",
                         secondaryText = "",
+                        displaySize = false,
                     }) {
     let scale = size / 300;
     let scaledWidth = 890;
@@ -145,11 +150,13 @@ function canvasSize({
         height += 1;
     }
 
-    let dimension_icon = document.getElementById('dimensions-icon');
-    dimension_icon.textContent = "(Size: " + size + "x" + size + ")";
+    if (displaySize) {
+        let dimension_icon = document.getElementById('dimensions-icon');
+        dimension_icon.textContent = "(Size: " + size + "x" + size + ") ";
 
-    let dimension_symbol = document.getElementById('dimensions-symbol');
-    dimension_symbol.textContent = "(Size: " + height + "x" + width + ")";
+        let dimension_symbol = document.getElementById('dimensions-symbol');
+        dimension_symbol.textContent += "(Size: " + height + "x" + width + ") ";
+    }
 
     return [height, width]
 }
@@ -208,7 +215,7 @@ function textSVG({
                 src: url("data:application/font-woff;charset=utf-8;base64,${base64Encode(getBinary('font/MetropolisMedium.woff'))}") format("woff");
             }
             </style>
-                    <text x="${-0.01 * size}" y="${size*-0.05}" font-family="MetropolisMedium, Arial" font-size="${size * 0.4}px" fill="${color}">
+                    <text x="${-0.01 * size}" y="${size * -0.05}" font-family="MetropolisMedium, Arial" font-size="${size * 0.4}px" fill="${color}">
                     <tspan x="0" dy="1.2em">${primaryText}</tspan>
                     <tspan x="0" dy="1.2em">${secondaryText}</tspan>
                         </text>
@@ -304,14 +311,14 @@ function base64Encode(str) {
     let out = "", i = 0, len = str.length, c1, c2, c3;
     while (i < len) {
         c1 = str.charCodeAt(i++) & 0xff;
-        if (i == len) {
+        if (i === len) {
             out += CHARS.charAt(c1 >> 2);
             out += CHARS.charAt((c1 & 0x3) << 4);
             out += "==";
             break;
         }
         c2 = str.charCodeAt(i++);
-        if (i == len) {
+        if (i === len) {
             out += CHARS.charAt(c1 >> 2);
             out += CHARS.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));
             out += CHARS.charAt((c2 & 0xF) << 2);
