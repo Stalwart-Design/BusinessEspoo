@@ -255,16 +255,17 @@ function invertColor(hex, bw = true) {
             ? '#0114B3'
             : '#FFFFFF';
     }
+}
 
 // Get binary file using XMLHttpRequest
-    function getBinary(file) {
-        let xhr = new XMLHttpRequest();
-        xhr.open("GET", file, false);
-        xhr.overrideMimeType("text/plain; charset=x-user-defined");
-        xhr.send(null);
-        return xhr.responseText;
-    }
+function getBinary(file) {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", file, false);
+    xhr.overrideMimeType("text/plain; charset=x-user-defined");
+    xhr.send(null);
+    return xhr.responseText;
 }
+
 
 // Base64 encode binary string
 // Stolen from http://stackoverflow.com/questions/7370943/retrieving-binary-file-content-using-javascript-base64-encode-it-and-reverse-de
