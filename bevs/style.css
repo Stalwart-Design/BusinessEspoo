@@ -114,7 +114,14 @@ button {
     background-color: transparent;
     border: 1px solid #0114B3;
     color: #0114B3;
-    width: 200px;
+    width: 220px;
+}
+
+.button_secondary:hover {
+    background-color: #0114B3;
+    border: 1px solid #0114B3;
+    color: #ffffff;
+    width: 220px;
 }
 
 label {
