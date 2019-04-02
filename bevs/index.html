@@ -1,11 +1,10 @@
 <html lang="en">
 <head>
-    <!-- General -->
-    <title>Business Espoo Visual Symbol</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Business Espoo Visual Symbol Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
 
-    <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
@@ -18,25 +17,13 @@
     <meta name="msapplication-config" content="favicon/browserconfig.xml">
     <meta name="theme-color" content="#0114b3">
 
-    <!-- Sharing -->
     <meta property="og:image:width" content="1039">
     <meta property="og:image:height" content="544">
-    <meta property="og:title" content="BEVS">
-    <meta property="og:description" content="Generate Business Espoo Visual Symbols">
+    <meta property="og:title" content="BEVS Generator">
+    <meta property="og:description" content="Business Espoo Visual Symbols Generator">
     <meta property="og:image" content="favicon/og-image.jpg">
     <meta property="og:url" content="https://businessespoo.ml/bevs/">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137346440-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-137346440-1');
-    </script>
-
-    <!-- Imports -->
     <link href="style.css" rel="stylesheet">
     <script src="js/jquery.js"></script>
     <script src="js/index.js"></script>
@@ -44,6 +31,16 @@
     <script src="js/md5.js"></script>
 </head>
 <body>
+<div class="overlay">
+    <div class="overlay-content">
+        <div id="overlay-bevs"></div>
+        <strong>Device width is too narrow.</strong> <br>
+        The site works better in landscape mode. <br>
+        Rotate you device to use the generator. <br><br>
+        - <a href="http://www.businessespoo.com" target="_blank">Business Espoo Team</a>
+    </div>
+</div>
+
 <aside id="sidebar">
     <div id="header_logo">
         <a href="index.html" target="_self" id="bevs"></a>
@@ -116,11 +113,12 @@
             </ul>
             </p>
         </div>
-        <div id="foot_button">
-            © Copyright <a href="http://businessespoo.com" target="_blank">Business Espoo</a><br>
-            Designed by <a href="http://guptasiddhant.com" target="_blank">Siddhant Gupta</a>
-        </div>
     </form>
+
+    <div id="foot_button">
+        © Copyright <a href="http://businessespoo.com" target="_blank">Business Espoo</a><br>
+        Designed by <a href="http://guptasiddhant.com" target="_blank">Siddhant Gupta</a>
+    </div>
 </aside>
 
 <main id="main">
@@ -143,7 +141,9 @@
     </div>
 
     <button class="button_secondary" type="button" id="share">Copy Share Link</button>
-    <button class="button_secondary" type="button" id="download" onclick="location.href='BE_VIS_Guidelines_EN-2019.pdf'" formtarget="_blank">Download Usage Guidelines</button>
+    <button class="button_secondary" type="button" id="download" onclick="location.href='BE_VIS_Guidelines_EN-2019.pdf'"
+            formtarget="_blank">Download Usage Guidelines
+    </button>
 </main>
 
 </body>

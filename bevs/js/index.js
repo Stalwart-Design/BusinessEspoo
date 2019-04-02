@@ -24,12 +24,26 @@ function start() {
     displayImage({
         displayElement: document.getElementById("bevs"),
         displayImage: createSVG({
-            primaryText: "Visual Symbol",
+            primaryText: "Visual Symbol Generator",
             textStyle: 1,
             iconStyle: 1,
             color1: "#E6E8F2",
         }),
-        displayHeight: 80,
+        displayHeight: 60,
+        displayBackgroundColor: "transparent",
+        displayLink: "index.html"
+    });
+
+    // Overlay logo
+    displayImage({
+        displayElement: document.getElementById("overlay-bevs"),
+        displayImage: createSVG({
+            primaryText: "Visual Symbol Generator",
+            textStyle: 1,
+            iconStyle: 1,
+            color1: "#0114B3",
+        }),
+        displayHeight: 60,
         displayBackgroundColor: "transparent",
         displayLink: "index.html"
     });
@@ -38,9 +52,14 @@ function start() {
         render_set(text_lockup, color_symbol, color_lockup, size, style);
     } else {
         let main_area = document.getElementById("main");
-        main_area.innerText = `Access not Granted! Incorrect SECRET KEY.`;
-
-
+        main_area.innerHTML = ` `;
+        let warning = document.createElement('p');
+        warning.style = "padding-top: 80px";
+        warning.innerHTML =
+            ` <strong> ACCESS NOT GRANTED! </strong> 
+                <br> Incorrect or missing SECRET KEY. <br> <br>
+                The SECRET KEY is required to generate symbols. Contact Business Espoo Managemnet fot access.`;
+        main_area.appendChild(warning);
     }
 
 }
