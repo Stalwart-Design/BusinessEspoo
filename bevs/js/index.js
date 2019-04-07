@@ -95,7 +95,7 @@ function readParams() {
 
         //replace unsupported characters
         text_lockup = text_lockup.replace(/&/g, 'and');
-        text_lockup = text_lockup.replace(/</g, '');
+        text_lockup = text_lockup.replace(/</g, ' ');
 
         // Fill form with data
         $('#text_lockup').val(text_lockup);

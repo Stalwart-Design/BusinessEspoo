@@ -163,35 +163,26 @@ function textSVG({
     let svgText = "";
     switch (textStyle) {
         case 1:
-            svgText = `<svg height="${height}" width="${width}" version="1.1" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
-            <style>
-            @font-face {
-                font-family: "MetropolisMedium";
-                src: url("data:application/font-woff;charset=utf-8;base64,${base64Encode(getBinary('font/MetropolisMedium.woff'))}") format("woff");
-            }
-            </style>
-                    <text x="${-0.01 * size}" y="${0.4 * size}" 
-                    font-family="MetropolisMedium, Arial" font-size="${size * 0.4}px" fill="${color}">
-                        ${primaryText}</text>
-                    </svg>`;
+            svgText = `<text x="${-0.01 * size}" y="${0.4 * size}" 
+                       font-family="MetropolisMedium, Arial" font-size="${size * 0.4}px" fill="${color}">
+                       ${primaryText}</text>`;
             break;
 
         case 2:
-            svgText = `<svg height="${height}" width="${width}" version="1.1" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+            svgText = `<text x="${-0.01 * size}" y="${size * -0.05}" font-family="MetropolisMedium, Arial" font-size="${size * 0.4}px" fill="${color}">
+                       <tspan x="0" dy="1.2em">${primaryText}</tspan>
+                       <tspan x="0" dy="1.2em">${secondaryText}</tspan>
+                       </text>`;
+            break;
+    }
+    return `<svg height="${height}" width="${width}" version="1.1" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
             <style>
             @font-face {
                 font-family: "MetropolisMedium";
                 src: url("data:application/font-woff;charset=utf-8;base64,${base64Encode(getBinary('font/MetropolisMedium.woff'))}") format("woff");
             }
             </style>
-                    <text x="${-0.01 * size}" y="${size * -0.05}" font-family="MetropolisMedium, Arial" font-size="${size * 0.4}px" fill="${color}">
-                    <tspan x="0" dy="1.2em">${primaryText}</tspan>
-                    <tspan x="0" dy="1.2em">${secondaryText}</tspan>
-                        </text>
-                    </svg>`;
-            break;
-    }
-    return svgText;
+            ${svgText} </svg>`;
 }
 
 // Return icon SVG
